@@ -16,4 +16,4 @@ jobs:
     - name: Build
       run: swift build
     - name: Run tests
-      run: swift test --skip-build --skip test.*Integration
+      run: swift test --skip test.*Integration
