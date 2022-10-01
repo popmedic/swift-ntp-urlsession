@@ -86,12 +86,12 @@ final class NTPTests: XCTestCase {
         wait(for: [expectation], timeout: 30.0)
     }
 
-    // static var allTests = [
-    //     ("testRegister", testRegister),
-    //     ("testCanInitSuccess", testCanInitSuccess),
-    //     ("testCanInitFail", testCanInitFail),
-    //     ("testInitRequest", testInitRequest),
-    //     ("testInitTask", testInitTask),
-    //     ("testIntegration", testIntegration),
-    // ]
+    static var allTests = [
+        ("testRegister", testRegister),
+        ("testCanInitSuccess", testCanInitSuccess),
+        ("testCanInitFail", testCanInitFail),
+        ("testInitRequest", testInitRequest),
+        ("testInitTask", testInitTask),
+        ("testIntegration", testIntegration),
+    ]
 }
