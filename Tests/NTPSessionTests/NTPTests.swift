@@ -57,7 +57,13 @@ final class NTPTests: XCTestCase {
         XCTAssertEqual(ntp.request, task.currentRequest)
     }
 
-    func test() throws {
+    func testTimeable() throws {
+        let exp = TimeInterval(Double(UInt32.max) + Double(UInt32.max)/10000000000.0)
+        let time64 = NTP.Time64(whole: UInt32.max, fraction: UInt32.max)
+        XCTAssertEqual(exp, time64.timeInterval)
+    }
+
+    func testIntegration() throws {
         let expectation = XCTestExpectation()
         NTP.register
         let request = URL(string: "ntp://time.apple.com")!
@@ -80,11 +86,12 @@ final class NTPTests: XCTestCase {
         wait(for: [expectation], timeout: 30.0)
     }
 
-    static var allTests = [
-        ("testRegister", testRegister),
-        ("testCanInitSuccess", testCanInitSuccess),
-        ("testCanInitFail", testCanInitFail),
-        ("testInitRequest", testInitRequest),
-        ("testInitTask", testInitTask),
-    ]
+    // static var allTests = [
+    //     ("testRegister", testRegister),
+    //     ("testCanInitSuccess", testCanInitSuccess),
+    //     ("testCanInitFail", testCanInitFail),
+    //     ("testInitRequest", testInitRequest),
+    //     ("testInitTask", testInitTask),
+    //     ("testIntegration", testIntegration),
+    // ]
 }
