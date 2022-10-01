@@ -1,0 +1,21 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run tests",
+            "command": "swift",
+            "args": [
+                "test",
+                "--enable-code-coverage"
+            ],
+            "dependsOn": [],
+            "type": "shell",
+            "group": "test",
+            "presentation": {
+                "clear": true,
+                "reveal": "silent",
+                "panel": "new"
+            }
+        }
+    ]
+}

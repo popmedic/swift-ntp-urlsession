@@ -57,13 +57,13 @@ final class NTPTests: XCTestCase {
         XCTAssertEqual(ntp.request, task.currentRequest)
     }
 
-    func _test() throws {
+    func test() throws {
         let expectation = XCTestExpectation()
         NTP.register
         let request = URL(string: "ntp://time.apple.com")!
         let task = URLSession.shared.dataTask(with: request) { data, _, error in
             guard error == nil, let data = data else {
-                XCTFail("error shoul be nil not \"\(error!)\"" +
+                XCTFail("error should be nil not \"\(error!)\"" +
                             " and data should not be nil")
                 return
             }
@@ -73,7 +73,7 @@ final class NTPTests: XCTestCase {
             print("New Date     = \(date)")
             XCTAssertEqual(Date().timeIntervalSince1970,
                            date.timeIntervalSince1970,
-                           accuracy: 10.0)
+                           accuracy: 30.0)
             expectation.fulfill()
         }
         task.resume()
