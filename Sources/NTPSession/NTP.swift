@@ -44,7 +44,7 @@ public class NTP: URLProtocol {
                   client: client)
     }
 
-    // MARK: - public overrides cotrol
+    // MARK: - public overrides control
     override
     public func startLoading() { ctrlQ.async { self.start() } }
 
