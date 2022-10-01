@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug swiftntp",
+            "program": "${workspaceFolder:swift-ntp-urlsession}/.build/debug/swiftntp",
+            "args": [],
+            "cwd": "${workspaceFolder:swift-ntp-urlsession}",
+            "preLaunchTask": "swift: Build Debug swiftntp"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Release swiftntp",
+            "program": "${workspaceFolder:swift-ntp-urlsession}/.build/release/swiftntp",
+            "args": [],
+            "cwd": "${workspaceFolder:swift-ntp-urlsession}",
+            "preLaunchTask": "swift: Build Release swiftntp"
+        }
+    ]
+}

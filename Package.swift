@@ -20,11 +20,16 @@ let package = Package(
             name: "\(exe)",
             targets: ["\(exe)"])
     ],
-    dependencies: [],
+    dependencies: [
+        .package(url: "https://github.com/apple/swift-tools-support-core.git",
+                 from: "0.0.1"),
+    ],
     targets: [
         .target(
             name: "\(exe)", 
-            dependencies: [Target.Dependency(stringLiteral: "\(name)")]),
+            dependencies: [
+                Target.Dependency(stringLiteral: "\(name)"),
+                .product(name: "SwiftToolsSupport", package: "swift-tools-support-core")]),
         .target(
             name: "\(name)",
             dependencies: []),

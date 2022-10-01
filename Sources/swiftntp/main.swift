@@ -1,5 +1,9 @@
 import Foundation
 import NTPSession
+import TSCBasic
+
+// setup for color output
+let terminalController = TerminalController(stream: stdoutStream)
 
 // register NTP as a URL protocol
 NTP.register
@@ -16,8 +20,10 @@ let task = URLSession.shared.dataTask(with: request) { data, _, error in
     // read the bytes in data into a Date object
     let date = data.withUnsafeBytes { $0.load(as: Date.self) }
     // print the system current date and the date we just got
-    print("Current Date = \(Date())")
-    print("New Date     = \(date)")
+    terminalController?.write("Current Date = \(Date())", inColor: .green)
+    terminalController?.endLine()
+    terminalController?.write("New Date     = \(date)", inColor: .yellow)
+    terminalController?.endLine()
     group.leave()
 }
 // enter the group

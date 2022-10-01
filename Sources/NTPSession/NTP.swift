@@ -131,7 +131,6 @@ private extension NTP {
             let rxTime = packet.receiveTime.timeInterval
             let time = refTime + (rxTime - txTime)
             var date = Date(timeIntervalSince1970: time)
-            print(date)
             let data = Data(bytes: &date, count: MemoryLayout<TimeInterval>.size)
             client?.urlProtocol(self, didLoad: data)
         }
