@@ -2,19 +2,36 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Build tests",
+            "command": "swift",
+            "args": [
+                "test",
+                "--enable-code-coverage",
+            ],
+            "type": "shell",
+            "presentation": {
+                "clear": true,
+                "close": true,
+                "reveal": "never",
+                "panel": "shared"
+            }
+        },
+        {
             "label": "Run tests",
             "command": "swift",
             "args": [
                 "test",
-                "--enable-code-coverage"
+                "--enable-code-coverage",
+                "--skip-build"
             ],
-            "dependsOn": [],
+            "dependsOn": ["Build tests"],
             "type": "shell",
             "group": "test",
             "presentation": {
                 "clear": true,
-                "reveal": "silent",
-                "panel": "new"
+                "close": true,
+                "reveal": "never",
+                "panel": "shared"
             }
         }
     ]
