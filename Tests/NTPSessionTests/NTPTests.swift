@@ -57,7 +57,7 @@ final class NTPTests: XCTestCase {
         XCTAssertEqual(ntp.request, task.currentRequest)
     }
 
-    func test() throws {
+    func _test() throws {
         let expectation = XCTestExpectation()
         NTP.register
         let request = URL(string: "ntp://time.apple.com")!
@@ -86,6 +86,5 @@ final class NTPTests: XCTestCase {
         ("testCanInitFail", testCanInitFail),
         ("testInitRequest", testInitRequest),
         ("testInitTask", testInitTask),
-        ("test",test)
     ]
 }
