@@ -33,6 +33,21 @@
                 "reveal": "never",
                 "panel": "shared"
             }
+        },
+        {
+            "label": "Run swiftntp",
+            "command": "swift",
+            "args": [
+                "run",
+                "swiftntp",
+            ],
+            "type": "shell",
+            "group": "build",
+            "presentation": {
+                "clear": false,
+                "reveal": "always",
+                "panel": "shared"
+            }
         }
     ]
 }
