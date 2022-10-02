@@ -22,8 +22,8 @@ let task = URLSession.shared.dataTask(with: request) { data, _, error in
     // read the bytes in data into a Date object
     let date = data.withUnsafeBytes { $0.load(as: Date.self) }
     // print the system current date and the date we just got
-    print(tty.wrap("Current Date = \(Date())", inColor: .cyan))
-    print(tty.wrap("New Date     = \(date)", inColor: .green))
+    print(tty.wrap("Localhost Date: \(Date().description(with: .current))", inColor: .cyan))
+    print(tty.wrap("Apple.com Date: \(date.description(with: .current))", inColor: .green))
     group.leave()
 }
 // enter the group
