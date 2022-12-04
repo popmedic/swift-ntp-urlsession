@@ -126,10 +126,7 @@ private extension NTP {
         if let message = message {
             let packet = message.withUnsafeBytes { $0.load(as: Packet.self) }
                 .nativeEndian
-            let refTime = packet.referenceTime.timeInterval - timeFrom1900to1970
-            let txTime = packet.transmitTime.timeInterval
-            let rxTime = packet.receiveTime.timeInterval
-            let time = refTime + (rxTime - txTime)
+            let time = packet.receiveTime.timeInterval - timeFrom1900to1970
             var date = Date(timeIntervalSince1970: time)
             let data = Data(bytes: &date, count: MemoryLayout<TimeInterval>.size)
             client?.urlProtocol(self, didLoad: data)
@@ -178,25 +175,8 @@ private extension NTP {
     }
 
     var ntpRequest: Data {
-        var timeval = Darwin.timeval()
-        gettimeofday(&timeval, nil)
-        precondition(timeval.tv_sec >= 0 && timeval.tv_usec >= 0, "Time must be positive \(timeval)")
-        let whole = UInt32(Double(timeval.tv_sec) + timeFrom1900to1970)
-        let frac = UInt32(UInt64(timeval.tv_usec) * UInt64(1<<32 / USEC_PER_SEC))
-        let packet = Packet(
-            stratum: 0,
-            poll: 0,
-            precision: 0,
-            rootDelay: Time32(whole: 0, fraction: 0),
-            rootDispersion: Time32(whole: 0, fraction: 0),
-            referenceID: 0,
-            referenceTime: Time64(whole: 0, fraction: 0),
-            originateTime: Time64(whole: whole, fraction: frac),
-            transmitTime: Time64(whole: 0, fraction: 0),
-            receiveTime: Time64(whole: 0, fraction: 0)
-        )
-        var buffer = packet
-        return Data(bytes: &buffer, count: MemoryLayout.size(ofValue: packet))
+        var buffer = Packet()
+        return Data(bytes: &buffer, count: MemoryLayout.size(ofValue: buffer))
     }
 }
 
